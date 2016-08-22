@@ -24,7 +24,7 @@ namespace ClusterNode
                     //settings: ClusterSingletonManagerSettings.Create(system)),
                     settings: new ClusterSingletonManagerSettings(
                         "my-singleton",
-                        "singletoncontainer",
+                        "singletonrole",
                         TimeSpan.FromSeconds(10),
                         TimeSpan.FromSeconds(3))),
                 name: "singleton");
@@ -33,7 +33,7 @@ namespace ClusterNode
             var singletonProxy = system.ActorOf(ClusterSingletonProxy.Props(
                 singletonManagerPath: "/user/singleton",
                 //settings: ClusterSingletonProxySettings.Create(system)),
-                settings: new ClusterSingletonProxySettings("my-singleton", "singletoncontainer", TimeSpan.FromSeconds(3), 8192)),
+                settings: new ClusterSingletonProxySettings("my-singleton", "singletonrole", TimeSpan.FromSeconds(3), 8192)),
                 name: "my-singleton-proxy");
 
             system.Scheduler.ScheduleTellRepeatedly(
